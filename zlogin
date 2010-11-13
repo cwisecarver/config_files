@@ -52,13 +52,8 @@ _git_remote_branch() {
       # first arg: operation
       compadd create publish rename delete track
     elif (( CURRENT == 3 )); then
-      if [[ $words[2] == "publish" ]]; then
-        # second arg: local branch name
-        compadd `git branch -l | sed "s/[ \*]//g"`
-      else;
-        # second arg: remote branch name
-        compadd `git branch -r | grep -v HEAD | sed "s/.*\///" | sed "s/ //g"`
-      fi
+      # second arg: remote branch name
+      compadd `git branch -r | grep -v HEAD | sed "s/.*\///" | sed "s/ //g"`
     elif (( CURRENT == 4 )); then
       # third arg: remote name
       compadd `git remote`
